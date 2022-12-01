@@ -11,9 +11,7 @@ import (
 
 func main() {
 	input, err := os.ReadFile("input.txt")
-	// returns a string of the input
-	// in the form of a byte array
-
+	
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -21,21 +19,20 @@ func main() {
 	var calories []int
 
 	stringInput := string(input[:])
-	elfCalories := strings.Split(stringInput, "\n\n")
+	caloriesForEachElf := strings.Split(stringInput, "\n\n")
 
-	for _, word := range elfCalories {
-		individualCalories := strings.Split(word, "\n")
+	for _, calorieSets := range caloriesForEachElf {
+		individualCalories := strings.Split(calorieSets, "\n")
+
 		var total int
 		for _, calories := range individualCalories {
 			integerCalorie, err := strconv.Atoi(calories)
-
 			if err != nil {
 				break
 			}
 
 			total += integerCalorie
 		}
-
 		calories = append(calories, total)
 	}
 
@@ -47,9 +44,9 @@ func main() {
 
 	fmt.Printf("Maximum number of calories: %d\n", sortedCalories[noOfElves-1])
 
-	topThree := sortedCalories[noOfElves-1] +
+	sumOfTopThreeElves := sortedCalories[noOfElves-1] +
 		sortedCalories[noOfElves-2] +
 		sortedCalories[noOfElves-3]
 
-	fmt.Printf("Top three calories: %d\n", topThree)
+	fmt.Printf("Top three calories: %d\n", sumOfTopThreeElves)
 }
