@@ -9,11 +9,6 @@ import (
 	"strings"
 )
 
-type elf struct {
-	calories []int
-	total    int
-}
-
 func main() {
 	input, err := os.ReadFile("input.txt")
 	// returns a string of the input
@@ -23,15 +18,14 @@ func main() {
 		log.Fatal(err)
 	}
 
-	var elves []elf
+	var calories []int
 
 	stringInput := string(input[:])
 	elfCalories := strings.Split(stringInput, "\n\n")
 
 	for _, word := range elfCalories {
-		currentElf := elf{}
 		individualCalories := strings.Split(word, "\n")
-
+		var total int
 		for _, calories := range individualCalories {
 			integerCalorie, err := strconv.Atoi(calories)
 
@@ -39,26 +33,23 @@ func main() {
 				break
 			}
 
-			currentElf.calories = append(currentElf.calories, integerCalorie)
-			currentElf.total += integerCalorie
+			total += integerCalorie
 		}
 
-		elves = append(elves, currentElf)
+		calories = append(calories, total)
 	}
 
-	var elfTotals []int
+	sortedCalories := make([]int, len(calories))
+	copy(sortedCalories, calories)
+	sort.Ints(sortedCalories)
 
-	for _, currentElf := range elves {
-		elfTotals = append(elfTotals, currentElf.total)
-	}
+	noOfElves := len(sortedCalories)
 
-	sortedTotals := make([]int, len(elfTotals))
-	copy(sortedTotals, elfTotals)
-	sort.Ints(sortedTotals)
-	fmt.Printf("Maximum number of calories: %d\n", sortedTotals[len(sortedTotals)-1])
-	topThree := sortedTotals[len(sortedTotals)-1] +
-		sortedTotals[len(sortedTotals)-2] +
-		sortedTotals[len(sortedTotals)-3]
+	fmt.Printf("Maximum number of calories: %d\n", sortedCalories[noOfElves-1])
+
+	topThree := sortedCalories[noOfElves-1] +
+		sortedCalories[noOfElves-2] +
+		sortedCalories[noOfElves-3]
 
 	fmt.Printf("Top three calories: %d\n", topThree)
 }
