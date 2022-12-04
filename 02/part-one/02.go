@@ -20,8 +20,8 @@ type round struct {
 }
 
 func main() {
-	result("rock", "scissors")
-	input, err := os.ReadFile("input.txt") // byte array
+	input, err := os.ReadFile("input.txt")
+
 	handle(err)
 
 	var game []round
@@ -29,9 +29,6 @@ func main() {
 
 	gameRecord := strings.Split(string(input), "\n")
 	gameRecord = gameRecord[:len(gameRecord)-1]
-	for c, value := range gameRecord {
-		fmt.Printf("%d- %s\n", c, value)
-	}
 
 	for _, move := range gameRecord {
 		moves := strings.Split(move, " ")
@@ -58,23 +55,10 @@ func translateMove(move string) (string, error) {
 	switch move {
 	case "A", "X":
 		return "rock", nil
-	case "B", "Y:
+	case "B", "Y":
 		return "paper", nil
 	case "C", "Z":
 		return "scissors", nil
-	default:
-		return "", errors.New("incorrect data")
-	}
-}
-
-func translateResult(outcome string) (string, error) {
-	switch outcome {
-	case "X":
-		return "loss", nil
-	case "Y":
-		return "draw", nil
-	case "Z":
-		return "win", nil
 	default:
 		return "", errors.New("incorrect data")
 	}
