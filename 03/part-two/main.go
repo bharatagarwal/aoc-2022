@@ -33,7 +33,8 @@ func main() {
 		println()
 	}
 
-	commonItems = findCommonInBatches(priorityBatches) // find common item in each trio
+	// find common item in each trio
+	commonItems = findCommonInBatches(priorityBatches)
 	fmt.Println(commonItems)
 
 	for _, item := range commonItems {
