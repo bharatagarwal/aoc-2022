@@ -1,0 +1,14 @@
+"
+                        [R] [J] [W]
+            [R] [N]     [T] [T] [C]
+[R]         [P] [G]     [J] [P] [T]
+[Q]     [C] [M] [V]     [F] [F] [H]
+[G] [P] [M] [S] [Z]     [Z] [C] [Q]
+[P] [C] [P] [Q] [J] [J] [P] [H] [Z]
+[C] [T] [H] [T] [H] [P] [G] [L] [V]
+[F] [W] [B] [L] [P] [D] [L] [N] [G]"
+
+DPJ
+LGPZFJTR
+NLHCFPTJ
+GVZQHTCW
